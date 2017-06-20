@@ -8,7 +8,7 @@ const styles = {
     }
 }
 
-const Tenant = ({name, clusters, metric}) => (
+const Tenant = ({name, clusters, metric, onClick}) => (
     <div style={styles.container}>
         <div>{name}</div>
         { clusters.map((item, index) => 
@@ -18,6 +18,7 @@ const Tenant = ({name, clusters, metric}) => (
                 pods={item.pods}
                 RAM={item.RAM}
                 metric={metric}
+                onClick={onClick}
             />)
         ) }
     </div>

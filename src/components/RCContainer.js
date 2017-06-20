@@ -24,8 +24,8 @@ const showMetricData = (cores, pods, RAM, metric) => {
     };
 }
 
-const RCContainer = ({ name, cores, pods, RAM, metric }) => (
-    <div style={styles.container}>
+const RCContainer = ({ name, cores, pods, RAM, metric, onClick }) => (
+    <div style={styles.container} onClick={() => onClick(name)}>
         <div>{name}</div>
         { showMetricData(cores, pods, RAM, metric)}
     </div>

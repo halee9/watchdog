@@ -1,7 +1,7 @@
 import React from 'react';
 import Tenant from './Tenant';
 
-const TenantList = ({tenants, metric}) => {
+const TenantList = ({tenants, metric, select}) => {
     // console.log(tenants);
     return (
     <div>
@@ -13,6 +13,7 @@ const TenantList = ({tenants, metric}) => {
                         name={tenant.name} 
                         clusters={tenant.clusters} 
                         metric={metric}
+                        onClick={select}
                     />
                 )
             })
