@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Breadcrumb from '../components/Breadcrumb';
 import Node from '../components/Node';
 import { nodes } from '../api/nodeData';
+import { browserHistory, Link } from 'react-router'
 
 const styles = {
     container: {
@@ -22,6 +23,7 @@ class ClusterContainer extends Component {
     constructor(){
         super();
         this.nodes = [];
+        this.handleSelectNode = this.handleSelectNode.bind(this);
     }
 
     componentWillMount(){
@@ -35,11 +37,21 @@ class ClusterContainer extends Component {
         this.nodes = nodeList;
     }
 
+    handleSelectNode(nodeName){
+        browserHistory.push('/'+this.props.params.clusterName+'/'+nodeName);
+    }
+
+
     render() {
         return (
             <div style={styles.container}>
-                <Breadcrumb />
-                { this.nodes.map(node => <Node name={node.name} />) }
+                <Breadcrumb>
+                    <Link to='/'>Home </Link>
+                    <span>Cluster</span>
+                </Breadcrumb>
+                { this.nodes.map(node => 
+                    <Node name={node.name} onClick={this.handleSelectNode} />
+                ) }
             </div>
         )
     }

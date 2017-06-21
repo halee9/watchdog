@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Node = ({ name }) => {
+const Node = ({ name, onClick }) => {
     return (
-        <div>
+        <div onClick={() => onClick(name)}>
             { name }
         </div>
     )

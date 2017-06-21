@@ -7,7 +7,7 @@ const App = () => (
   <Router history={browserHistory}>
     <Route path="/">
       <IndexRoute component={TenantContainer} />
-      <Route path="cluster/:clusterName" component={ClusterContainer} />
+      <Route path=":clusterName" component={ClusterContainer} />
     </Route>
   </Router>
 )

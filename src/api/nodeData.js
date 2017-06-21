@@ -29,6 +29,13 @@ const regionalCluster = [
     }
 ];
 
+export function getNodes(){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve(nodes);
+        }, 3000)
+    })
+}
 
 export const nodes = [
     {

@@ -3,8 +3,8 @@ import Metric from '../components/Metric';
 import TenantList from '../components/TenantList';
 import Total from '../components/Total';
 import Breadcrumb from '../components/Breadcrumb';
-import { nodes } from '../api/nodeData';
-import { browserHistory } from 'react-router'
+import { nodes, getNodes } from '../api/nodeData';
+import { browserHistory, Link } from 'react-router'
 
 const styles = {
     container: {
@@ -32,7 +32,11 @@ class TenantContainer extends Component {
     }
 
     componentWillMount(){
+        getNodes().then((nodes) => {
+            console.log(nodes);
+        });
         let clusters = {};
+        // let nodes = [];
         nodes.forEach(node => {
             if (!clusters[node.regionalCluster]) {
                 clusters[node.regionalCluster] = {};
@@ -74,8 +78,7 @@ class TenantContainer extends Component {
         this.setState({metric: e.target.value})
     }
     handleSelectCluster(clusterName){
-        console.log(clusterName);
-        browserHistory.push('/cluster/' + clusterName);
+        browserHistory.push(clusterName);
     }
     render() {
         console.log(this.tenants);
@@ -92,7 +95,9 @@ class TenantContainer extends Component {
         console.log(total);
         return (
             <div style={styles.container}>
-                <Breadcrumb />
+                <Breadcrumb>
+                    <Link to='/'>Home </Link>
+                </Breadcrumb>
                 <div style={styles.total}>
                     <Total total={total} metric={this.state.metric} />
                 </div>
